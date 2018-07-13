@@ -7,13 +7,11 @@
         
         @foreach (var stylist in Model)
         {
-            <div class="card bg-primary">
+            <div class="card bg-light">
                 <div class="card-body text-center">
-                    <p class="card-text">
-                        Yadda yadda
-                        <a href="/stylist/@stylist.GetId()/about">@stylist.GetName()</a>
-                        <a href="/stylist/@stylist.GetId()/delete">Terminante</a>
-                    </p>
+                    <p class="card-text"><a href="/stylist/@stylist.GetId()/about">@stylist.GetName()</a></p>
+                        
+                        <a href="/stylist/@stylist.GetId()/delete" class="btn btn-primary">Terminate</a>         
                 </div>
             </div>
         }

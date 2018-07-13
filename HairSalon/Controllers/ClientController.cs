@@ -21,6 +21,7 @@ namespace HairSalon.Controllers
             {
                 View("NoClients");
             }
+
             return View(allClients);
         }
 

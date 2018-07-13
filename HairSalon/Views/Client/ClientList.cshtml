@@ -1,13 +1,23 @@
 ﻿@{
     ViewData["Title"] = "Clients";
 }
-<ul>
 
-    @foreach(var client in Model)
-    {
-    <li> @client.GetClientName()</li>
 
-     }
-</ul>
-<a href="/client/deleteall">Clear Client List</a>
-<a href="/client/new">Add Client</a>
+@foreach (var client in Model)
+{
+
+    <div class="card bg-light mb-3" style="max-width: 18rem;">
+        <div class="card-header">@client.GetClientName()</div>
+        <div class="card-body">
+            <h5 class="card-title"></h5>
+            <p class="card-text">
+
+
+            </p>
+        </div>
+    </div>
+
+}
+
+<a href="/client/new" class="btn btn-primary">Add Another Client</a>
+<a href="/client/deleteall" class="btn btn-primary">Clear Client List</a>
