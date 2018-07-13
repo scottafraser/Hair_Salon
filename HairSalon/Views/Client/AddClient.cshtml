@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Clients";
+}
+
+<form action="/client/new/add" method="post">
+    
+    <select name="select-stylist">
+        @foreach (var stylist in Model)
+        {
+            <option value="@stylist.GetId()">@stylist.GetName()</option>
+        }
+    </select>
+    <div class='form-group'>
+        <label for='client'>New Client Name</label>
+        <input id='client' name='client' class='form-control' type='text'>
+    </div>
+    <button class="btn btn-primary" type="submit"> Add Client </button>
+</form>

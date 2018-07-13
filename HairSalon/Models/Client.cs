@@ -50,6 +50,8 @@ namespace HairSalon.Models
         {
             return _stylistId;
         }
+
+      
         public void Save()
         {
             MySqlConnection conn = DB.Connection();
@@ -146,5 +148,6 @@ namespace HairSalon.Models
                 conn.Dispose();
             }
         }
+         
     }
 }

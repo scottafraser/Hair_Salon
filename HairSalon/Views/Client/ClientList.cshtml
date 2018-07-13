@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "Clients";
+}
+<ul>
+
+    @foreach(var client in Model)
+    {
+    <li> @client.GetClientName()</li>
+
+     }
+</ul>
+<a href="/client/deleteall">Clear Client List</a>
+<a href="/client/new">Add Client</a>
