@@ -23,13 +23,22 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="Views\Stylist\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="Views\Home\StylistList.cshtml" />
     <Content Remove="Views\Home\About.cshtml" />
     <Content Remove="Views\Home\Contact.cshtml" />
+    <Content Remove="Views\Stylist\StylistList.cshtml" />
+    <Content Remove="Views\Stylist\AddStylist.cshtml" />
+    <Content Remove="Views\Stylist\Success.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Views\Home\StylistList.cshtml" />
+    <None Include="Views\Stylist\StylistList.cshtml" />
+    <None Include="Views\Stylist\AddStylist.cshtml" />
+    <None Include="Views\Stylist\Success.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Views\Stylist\Success.cshtml" />
   </ItemGroup>
 </Project>

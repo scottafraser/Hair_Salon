@@ -15,15 +15,6 @@ namespace HairSalon.Controllers
             return View();
         }
 
-        [HttpGet("/stylist/list")]
-        public ActionResult StylistList()
-        {
-            List<Stylist> allStylists = new List<Stylist>();
-            allStylists = Stylist.GetAll();
-
-            return View(allStylists);
-        }
-
 
         public IActionResult Error()
         {
