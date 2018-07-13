@@ -3,33 +3,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using HairSalon.Models;
 
 namespace HairSalon.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        [HttpGet("/")]
+        public ActionResult Index()
         {
             return View();
         }
 
-        public IActionResult About()
+        [HttpGet("/stylist/list")]
+        public ActionResult StylistList()
         {
-            ViewData["Message"] = "Your application description page.";
+            List<Stylist> allStylists = new List<Stylist>();
+            allStylists = Stylist.GetAll();
 
-            return View();
+            return View(allStylists);
         }
 
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
 
         public IActionResult Error()
         {
             return View();
         }
     }
+
+   
 }
