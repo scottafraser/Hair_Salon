@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Stylists";
+}
+
+
+<ul>
+    @foreach (var client in Model)
+
+    {
+
+        <li>@client.GetClientName()</li>
+    }
+
+</ul>

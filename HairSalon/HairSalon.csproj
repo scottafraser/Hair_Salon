@@ -36,6 +36,7 @@
     <Content Remove="Views\Client\ClientList.cshtml" />
     <Content Remove="Views\Client\AddClient.cshtml" />
     <Content Remove="Views\Client\Success.cshtml" />
+    <Content Remove="Views\Stylist\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Stylist\StylistList.cshtml" />
@@ -44,6 +45,7 @@
     <None Include="Views\Client\ClientList.cshtml" />
     <None Include="Views\Client\AddClient.cshtml" />
     <None Include="Views\Client\Success.cshtml" />
+    <None Include="Views\Stylist\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Views\Stylist\Success.cshtml" />

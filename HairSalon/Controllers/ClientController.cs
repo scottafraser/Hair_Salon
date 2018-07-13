@@ -16,6 +16,7 @@ namespace HairSalon.Controllers
             List<Client> allClients = new List<Client>();
             allClients = Client.GetAll();
 
+            //this doesnt work yet
             if (allClients.Count == 0)
             {
                 View("NoClients");
@@ -64,10 +65,6 @@ namespace HairSalon.Controllers
         }
 
 
-        public IActionResult Error()
-        {
-            return View();
-        }
     }
 
 
