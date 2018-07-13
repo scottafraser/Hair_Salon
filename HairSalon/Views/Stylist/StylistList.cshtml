@@ -2,14 +2,31 @@
     ViewData["Title"] = "Stylists";
 }
 
-<ul>
-    
-    @foreach (var stylist in Model)
+
+    <div class="card-deck">
         
-    {
-    <li><a href="/stylist/@stylist.GetId()/about">@stylist.GetName()</a></li>
-    <p><a href="/stylist/@stylist.GetId()/delete">Terminante</a></p>
+        @foreach (var stylist in Model)
+        {
+            <div class="card bg-primary">
+                <div class="card-body text-center">
+                    <p class="card-text">
+                        Yadda yadda
+                        <a href="/stylist/@stylist.GetId()/about">@stylist.GetName()</a>
+                        <a href="/stylist/@stylist.GetId()/delete">Terminante</a>
+                    </p>
+                </div>
+            </div>
+        }
+    </div>
+
+        <ul>
+
+            @*@foreach (var stylist in Model)
+
+        {
+            <li><a href="/stylist/@stylist.GetId()/about">@stylist.GetName()</a></li>
+            <p><a href="/stylist/@stylist.GetId()/delete">Terminante</a></p>
 
     }
 
-</ul>
+        </ul>*@
