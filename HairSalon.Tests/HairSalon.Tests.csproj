@@ -19,4 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="..\HairSalon\HairSalon.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="ModelTests\UnitTest1.cs" />
+  </ItemGroup>
 </Project>

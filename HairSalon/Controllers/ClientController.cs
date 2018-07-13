@@ -16,7 +16,7 @@ namespace HairSalon.Controllers
             List<Client> allClients = new List<Client>();
             allClients = Client.GetAll();
 
-            if (allClients.Count < 1)
+            if (allClients.Count == 0)
             {
                 View("NoClients");
             }
