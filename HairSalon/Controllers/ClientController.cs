@@ -16,11 +16,6 @@ namespace HairSalon.Controllers
             List<Client> allClients = new List<Client>();
             allClients = Client.GetAll();
 
-            //this doesnt work yet
-            if (allClients.Count == 0)
-            {
-                View("NoClients");
-            }
 
             return View(allClients);
         }
@@ -45,7 +40,7 @@ namespace HairSalon.Controllers
 
             string newName = Request.Form["client"];
 
-            if (String.IsNullOrEmpty(newName))
+            if (String.IsNullOrEmpty(newName) || thisId == null)
             {
                 return View("Error");
             }
@@ -61,6 +56,15 @@ namespace HairSalon.Controllers
         {
            
             Client.DeleteAll();
+
+            return RedirectToAction("ClientList");
+        }
+
+        [HttpGet("/client/{id}/delete")]
+        public ActionResult Delete(int id)
+        {
+            Client thisClient = Client.Find(id);
+            thisClient.Delete();
 
             return RedirectToAction("ClientList");
         }
