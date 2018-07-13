@@ -49,8 +49,15 @@ namespace HairSalon.Controllers
         public ActionResult create()
         {
             string newName = Request.Form["stylist"];
+
+            if (String.IsNullOrEmpty(newName))
+            {
+                return View("Error");
+            }
+
             Stylist newStylist = new Stylist(newName, 0);
             newStylist.Save();
+
 
             string name = newStylist.GetName();
 

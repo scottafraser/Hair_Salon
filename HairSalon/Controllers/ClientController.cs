@@ -33,14 +33,18 @@ namespace HairSalon.Controllers
         [HttpPost("/client/new/add")]
         public ActionResult Create()
         {
-            int id = int.Parse(Request.Form["select-stylist"]);
-          
+            if (String.IsNullOrEmpty(Request.Form["select-stylist"]))
+            {
+                return View("Error");
+            }
+
+            int id = int.Parse(Request.Form["select-stylist"]);   
             Stylist thisStylist = Stylist.Find(id);
             int thisId = thisStylist.GetId();
 
             string newName = Request.Form["client"];
 
-            if (String.IsNullOrEmpty(newName) || thisId == null)
+            if (String.IsNullOrEmpty(newName))
             {
                 return View("Error");
             }
