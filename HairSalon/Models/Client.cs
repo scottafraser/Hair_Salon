@@ -56,7 +56,7 @@ namespace HairSalon.Models
             conn.Open();
 
             var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"INSERT INTO clients (clientName, stylist_id) VALUES (@clientName, @stylist_id);";
+            cmd.CommandText = @"INSERT INTO clients (client_name, stylist_id) VALUES (@clientName, @stylist_id);";
 
             MySqlParameter clientName = new MySqlParameter();
             clientName.ParameterName = "@clientName";
@@ -89,9 +89,9 @@ namespace HairSalon.Models
             while (rdr.Read())
             {
                 int clientId = rdr.GetInt32(0);
-                string clientClientName = rdr.GetString(1);
-                int clientStylistId = rdr.GetInt32(2);
-                Client newClient = new Client(clientClientName, clientStylistId, clientId);
+                string clientName = rdr.GetString(1);
+                int stylistId = rdr.GetInt32(2);
+                Client newClient = new Client(clientName, stylistId, clientId);
                 allClients.Add(newClient);
             }
             conn.Close();
@@ -116,15 +116,15 @@ namespace HairSalon.Models
             var rdr = cmd.ExecuteReader() as MySqlDataReader;
             int clientId = 0;
             string clientName = "";
-            int clientStylistId = 0;
+            int stylistId = 0;
 
             while (rdr.Read())
             {
                 clientId = rdr.GetInt32(0);
                 clientName = rdr.GetString(1);
-                clientStylistId = rdr.GetInt32(2);
+                stylistId = rdr.GetInt32(2);
             }
-            Client newClient = new Client(clientName, clientStylistId, clientId);
+            Client newClient = new Client(clientName, stylistId, clientId);
             conn.Close();
             if (conn != null)
             {
