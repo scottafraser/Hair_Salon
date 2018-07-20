@@ -77,16 +77,14 @@ namespace HairSalon.Tests
         [TestMethod]
         public void GetStylists_RetrievesAllStylistWithSpecialty_StylistList()
         {
-            Specialty testSpecialty = new Specialty("Beard Trimming");
-            testSpecialty.Save();
+          
 
-            Stylist firstStylist = new Stylist("Steve");
-            firstStylist.Save();
-            Stylist secondStylist = new Stylist("Jerry");
-            secondStylist.Save();
+            Stylist firstStylist = new Stylist("Steve", 1);     
+           
+            Specialty testSpecialty = new Specialty("Beard Trimming", 1);
+            testSpecialty.SaveSpecToStylist(1);
 
-
-            List<Stylist> testStylistList = new List<Stylist> { firstStylist, secondStylist };
+            List<Stylist> testStylistList = new List<Stylist> {firstStylist};
             List<Stylist> resultStylistList = testSpecialty.GetStylists();
 
             CollectionAssert.AreEqual(testStylistList, resultStylistList);
