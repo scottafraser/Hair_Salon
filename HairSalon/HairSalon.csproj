@@ -26,6 +26,7 @@
     <Folder Include="Views\Stylist\" />
     <Folder Include="Views\Client\" />
     <Folder Include="Views\Specialty\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="Views\Home\StylistList.cshtml" />
