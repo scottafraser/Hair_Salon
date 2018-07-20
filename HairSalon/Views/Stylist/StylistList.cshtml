@@ -3,22 +3,22 @@
 }
 
 
-    <div class="card-deck">
-        
-        @foreach (var stylist in Model)
-        {
-            <div class="card bg-light">
-                <div class="card-body text-center">
-                    <h5 class="card-title">@stylist.GetName()</h5>
-                    <p class="card-text"><a href="/stylist/@stylist.GetId()/about">Get @stylist.GetName()'s clients</a></p>
-                        
-                        <a href="/stylist/@stylist.GetId()/delete" class="btn btn-primary">Terminate</a>         
-                </div>
+<div class="card-deck">
+    
+    @foreach (var stylist in Model)
+    {
+        <div class="card bg-light">
+            <div class="card-body text-center">
+                <h5 class="card-title">@stylist.GetName()</h5>
+                <p class="card-text"><a href="/stylist/@stylist.GetId()/about">Get @stylist.GetName()'s clients</a></p>
+                    
+                    <a href="/stylist/@stylist.GetId()/delete" class="btn btn-primary">Terminate</a>         
             </div>
-        }
+        </div>
+    }
 
-    </div>
-    <br>
-    <a href="/stylist/new" class="btn btn-primary">Add Another Stylist</a>
+</div>
+<br>
+<a href="/stylist/new" class="btn btn-primary">Add Another Stylist</a>
 
 
