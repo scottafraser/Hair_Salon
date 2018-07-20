@@ -3,17 +3,70 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using HairSalon.Models;
 
 namespace HairSalon.Controllers
 {
     public class SpecialtyController : Controller
     {
-        // GET: /<controller>/
-        public IActionResult Index()
-        {
-            return View();
+        
+
+            [HttpGet("/specialty/index")]
+            public ActionResult Index()
+            {
+                List<Specialty> allSpecialties = new List<Specialty>();
+                allSpecialties = Specialty.GetAll();
+
+                return View(allSpecialties);
+            }
+
+            // [HttpGet("/specialty/{id}/about")]
+            // public ActionResult About(int id)
+            // {
+            //     Specialty thisSpecialty = Specialty.Find(id);
+            //     List<Client> clientList = new List<Client>();
+            //     clientList = thisSpecialty.GetClients();
+            //
+            //     return View("Details", clientList);
+            // }
+
+            [HttpGet("/specialty/{id}/delete")]
+            public ActionResult Delete(int id)
+            {
+                Specialty thisSpecialty = Specialty.Find(id);
+                thisSpecialty.Delete();
+
+                return RedirectToAction("SpecialtyList");
+            }
+
+            [HttpGet("/specialty/new")]
+            public ActionResult AddSpecialty()
+            {
+                return View();
+            }
+
+            [HttpPost("/specialty/new/add")]
+            public ActionResult create(string newName)
+            {
+                if (String.IsNullOrEmpty(newName))
+                {
+                    return View("Error");
+                }
+                Specialty newSpecialty = new Specialty(newName, 0);
+                newSpecialty.Save();
+
+                string name = newSpecialty.Name;
+
+                return View("Success", name);
+            }
+
+
+
+            public IActionResult Error()
+            {
+                return View();
+            }
         }
+
+
     }
-}

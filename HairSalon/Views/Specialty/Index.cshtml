@@ -2,3 +2,20 @@
     ViewData["Title"] = "Specialties";
 }
 
+<div class="card-deck">
+
+    @foreach (var specialty in Model)
+    {
+    <div class="card bg-light">
+        <div class="card-body text-center">
+            <h5 class="card-title">@specialty.Name</h5>
+            <p class="card-text"><a href="/stylist/@specialty.Id/about">@specialty.Name</a></p>
+
+            <a href="/stylist/@specialty.Id/delete" class="btn btn-primary">Terminate</a>
+        </div>
+    </div>
+    }
+
+</div>
+<br>
+<a href="/stylist/new" class="btn btn-primary">Add Another Stylist</a>   
