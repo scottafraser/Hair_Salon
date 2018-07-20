@@ -3,7 +3,7 @@
 }
 
 <form action="/client/new/add" method="post">
-    
+
     <select name="select-stylist">
         @foreach (var stylist in Model)
         {
@@ -13,6 +13,10 @@
     <div class='form-group'>
         <label for='client'>New Client Name</label>
         <input id='client' name='client' class='form-control' type='text'>
+    </div>
+    <div class='form-group'>
+        <label for='phone'>Phone Number</label>
+        <input id='phone' name='phone' class='form-control' type="number" placeholder="555-555-5555">
     </div>
     <button class="btn btn-primary" type="submit"> Add Client </button>
 </form>

@@ -2,5 +2,14 @@
     ViewData["Title"] = "Client Details";
 }
 
-@Model.FoundClient.GetClientName();
-
+<div class="card bg-light mb-3" style="max-width: 18rem;">
+    <div class="card-body text-center">
+        <h5 class="card-title">@Model.FoundClient.GetClientName(); </h5>
+        <p class="card-text">
+            <h5>@Model.FoundClient.GetPhoneNumber();</h5>
+            <a href="/client/@Model.FoundClient.GetId()/delete">Remove From Salon</a>
+            <a href="/stylist/@Model.FoundClient.GetStylistId()/details">See Stylist</a>
+            <a href="/client/@Model.FoundClient.GetId()/update">Change Info</a>
+        </p>
+    </div>
+</div>
