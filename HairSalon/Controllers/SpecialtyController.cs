@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using HairSalon.Models;
+using HairSalon.ViewModels;
 
 namespace HairSalon.Controllers
 {
@@ -20,15 +21,8 @@ namespace HairSalon.Controllers
                 return View(allSpecialties);
             }
 
-            // [HttpGet("/specialty/{id}/about")]
-            // public ActionResult About(int id)
-            // {
-            //     Specialty thisSpecialty = Specialty.Find(id);
-            //     List<Client> clientList = new List<Client>();
-            //     clientList = thisSpecialty.GetClients();
-            //
-            //     return View("Details", clientList);
-            // }
+            
+
 
             [HttpGet("/specialty/{id}/delete")]
             public ActionResult Delete(int id)
@@ -36,28 +30,40 @@ namespace HairSalon.Controllers
                 Specialty thisSpecialty = Specialty.Find(id);
                 thisSpecialty.Delete();
 
-                return RedirectToAction("SpecialtyList");
+                return RedirectToAction("Index");
             }
 
             [HttpGet("/specialty/new")]
-            public ActionResult AddSpecialty()
+            public ActionResult Create()
             {
-                return View();
+                List<Stylist> allStylists = Stylist.GetAll();
+
+                return View(allStylists);
             }
 
             [HttpPost("/specialty/new/add")]
-            public ActionResult create(string newName)
+            public ActionResult MakeSpecialty()
             {
+                if (String.IsNullOrEmpty(Request.Form["select-stylist"]))
+                {
+                    return View("Error");
+                }
+
+                int id = int.Parse(Request.Form["select-stylist"]);
+                Stylist thisStylist = Stylist.Find(id);
+
+                string newName = Request.Form["specialty"];
+
                 if (String.IsNullOrEmpty(newName))
                 {
                     return View("Error");
                 }
                 Specialty newSpecialty = new Specialty(newName, 0);
+
                 newSpecialty.Save();
+                newSpecialty.AddStylist(thisStylist);
 
-                string name = newSpecialty.Name;
-
-                return View("Success", name);
+                return View("Success");
             }
 
 

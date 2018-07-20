@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Create Specialty";
+}
+
+<form action="/specialty/new/add" method="post">
+    <select name="select-stylist">
+        @foreach (var stylist in Model)
+    {
+        <option value="@stylist.GetId()">@stylist.GetName()</option>
+    }
+    </select>
+
+    <div class='form-group'>
+        <label for='specialty'>New Specialty!</label>
+        <input id='specialty' name='specialty' class='form-control' type='text'>
+    </div>
+    <button class="btn btn-primary" type="submit"> Add Specialty</button>
+</form>

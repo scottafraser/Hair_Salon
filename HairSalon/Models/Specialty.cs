@@ -64,7 +64,7 @@ namespace HairSalon.Models
             conn.Open();
 
             var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"INSERT INTO stylists_specialties(stylist_id, specialty_id) VALUES (@Id, @stylistId);";
+            cmd.CommandText = @"INSERT INTO stylists_specialties(stylist_id, specialty_id) VALUES (@stylistId, @Id);";
                      
             cmd.Parameters.AddWithValue("@Id", this.Id);
             cmd.Parameters.AddWithValue("@stylistId", newStylist.GetId());
@@ -143,22 +143,25 @@ namespace HairSalon.Models
 
         public List<Stylist> GetStylists()
         {
-            List<Stylist> allStylistWithSpec = new List<Stylist> { };
+            
             MySqlConnection conn = DB.Connection();
             conn.Open();
             var cmd = conn.CreateCommand() as MySqlCommand;
             cmd.CommandText = @"SELECT stylists.* FROM specialties
-                JOIN stylists_specialties ON (specialties.id = stylists_specialties.specialty_id)
-                JOIN stylists ON (stylists_specialties.stylist_id = stylists.id)
-                WHERE specialties.id = @specialtyId;";
+                   JOIN stylists_specialties ON (specialties.id = stylists_specialties.specialty_id)
+                  JOIN stylists ON (stylists_specialties.stylist_id = stylists.id)
+                  WHERE specialties.id = @specialtyId;";
 
-            cmd.Parameters.AddWithValue("@specialtyId", this.Id);
+            cmd.Parameters.AddWithValue("@specialtyId", this.Id );
 
-            var rdr = cmd.ExecuteReader() as MySqlDataReader;
+            MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+            List<Stylist> allStylistWithSpec = new List<Stylist> { };
+
             while (rdr.Read())
             {
-                int id = rdr.GetInt32(0);
+                
                 string name = rdr.GetString(1);
+                int id = rdr.GetInt32(0);
 
                 Stylist newStylist = new Stylist(name, id);
                 allStylistWithSpec.Add(newStylist);
@@ -176,7 +179,7 @@ namespace HairSalon.Models
             MySqlConnection conn = DB.Connection();
             conn.Open();
             var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"DELETE FROM specialties WHERE Id = @searchId; DELETE FROM stylists WHERE stylist_id = @searchId;";
+            cmd.CommandText = @"DELETE FROM specialties WHERE Id = @searchId; DELETE FROM stylists_specialties WHERE specialty_id = @searchId;";
 
             cmd.Parameters.AddWithValue("@searchId", this.Id);
 

@@ -19,6 +19,16 @@ namespace HairSalon.Controllers
             return View(allStylists);
         }
 
+        [HttpGet("/stylist/{id}/stylistlist")]
+        public ActionResult Specialties(int id)
+        {
+            Specialty thisSpecialty = Specialty.Find(id);
+            List<Stylist> allStylists = thisSpecialty.GetStylists();
+
+            return View("StylistList", allStylists);
+        }
+
+
         [HttpGet("/stylist/{id}/about")]
         public ActionResult About(int id)
         {
@@ -28,6 +38,7 @@ namespace HairSalon.Controllers
 
             return View("Details", clientList);
         }
+
 
         [HttpGet("/stylist/{id}/delete")]
         public ActionResult Delete(int id)
