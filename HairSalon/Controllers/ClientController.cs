@@ -48,7 +48,7 @@ namespace HairSalon.Controllers
                 return View("Error");
             }
 
-            Client newClient = new Client(client, thisId, phone);
+            Client newClient = new Client(client, thisId, phone, 0);
 
             newClient.Save();
 

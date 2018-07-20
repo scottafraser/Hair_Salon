@@ -69,9 +69,9 @@ namespace HairSalon.Models
             cmd.CommandText = @"INSERT INTO clients (client_name, stylist_id, phone_number) VALUES (@clientName, @stylistId, @phoneNumber);";
 
 
-            cmd.Parameters.AddWithValue("@clientName", this.GetClientName());
-            cmd.Parameters.AddWithValue("@stylistId", this.GetStylistId());
-            cmd.Parameters.AddWithValue("@phoneNumber", this.GetPhoneNumber());
+            cmd.Parameters.AddWithValue("@clientName", this._clientName);
+            cmd.Parameters.AddWithValue("@stylistId", this._stylistId);
+            cmd.Parameters.AddWithValue("@phoneNumber", this._phoneNumber);
 
             cmd.ExecuteNonQuery();
             _id = (int)cmd.LastInsertedId;
@@ -107,6 +107,8 @@ namespace HairSalon.Models
             return allClients;
         }
 
+
+
         public static Client Find(int id)
         {
             MySqlConnection conn = DB.Connection();
@@ -140,6 +142,35 @@ namespace HairSalon.Models
             }
             return newClient;
         }
+
+        public void Edit(string newName, int newStylistId, int newPhoneNumber)
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"UPDATE recipes SET this.GetClientName() = @newName, this.SylistId = @newStylistId, this.GetPhoneNumber() = @newPhoneNumber WHERE id = @searchId;";
+
+            MySqlParameter searchId = new MySqlParameter();
+            searchId.ParameterName = "@searchId";
+            searchId.Value = _id;
+            cmd.Parameters.Add(searchId);
+
+            cmd.Parameters.AddWithValue("@newName", newName);
+            cmd.Parameters.AddWithValue("@newStylistId", newStylistId);
+            cmd.Parameters.AddWithValue("@newPhoneNumber", newPhoneNumber);
+
+            cmd.ExecuteNonQuery();
+            _clientName = newName;
+            _stylistId = newStylistId;
+            _phoneNumber = newPhoneNumber;
+
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+        }
+
 
         //public static Client FindStylist(Client client)
         //{
