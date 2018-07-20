@@ -103,6 +103,7 @@ namespace HairSalon.Models
             }
             return allClients;
         }
+
         public static Client Find(int id)
         {
             MySqlConnection conn = DB.Connection();
@@ -134,6 +135,35 @@ namespace HairSalon.Models
             }
             return newClient;
         }
+
+        //public static Client FindStylist(int id)
+        //{
+        //    MySqlConnection conn = DB.Connection();
+        //    conn.Open();
+        //    var cmd = conn.CreateCommand() as MySqlCommand;
+        //    cmd.CommandText = @"SELECT * FROM stylists WHERE id = (@searchId);";
+
+        //    cmd.Parameters.AddWithValue("@searchId", id);
+
+        //    var rdr = cmd.ExecuteReader() as MySqlDataReader;
+        //    int clientId = 0;
+        //    string clientName = "";
+        //    int stylistId = 0;
+
+        //    while (rdr.Read())
+        //    {
+        //        clientId = rdr.GetInt32(0);
+        //        clientName = rdr.GetString(1);
+        //        stylistId = rdr.GetInt32(2);
+        //    }
+        //    Client newClient = new Client(clientName, stylistId, clientId);
+        //    conn.Close();
+        //    if (conn != null)
+        //    {
+        //        conn.Dispose();
+        //    }
+        //    return newClient;
+        //}
 
         public static void DeleteAll()
         {

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using HairSalon.Models;
+using HairSalon.ViewModels;
 
 namespace HairSalon.Controllers
 {
@@ -54,6 +55,16 @@ namespace HairSalon.Controllers
 
             return View("Success");
         }
+
+        [HttpGet("/client/{id}/details")]
+        public ActionResult Details(int id)
+        {
+            SalonData newSalonData = new SalonData();
+            newSalonData.FindClient(id);
+                        
+            return View(newSalonData);
+        }
+
 
         [HttpGet("/client/deleteall")]
         public ActionResult Delete()

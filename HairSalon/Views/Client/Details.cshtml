@@ -2,13 +2,5 @@
     ViewData["Title"] = "Client Details";
 }
 
-@foreach (var client in Model)
-    {
-    <div class="card bg-light">
-        <div class="card-body text-center">
-            <h5 class="card-title">@client.GetClientName()</h5>
-            <p class="card-text"><a href="/client/@client.GetId()/about">Get @client.GetClientName()'s details</a></p>
-            <a href="/stylist/@client.GetId()/delete" class="btn btn-primary">Remove Client</a>
-        </div>
-    </div>
-    }
+@Model.FoundClient.GetClientName();
+
