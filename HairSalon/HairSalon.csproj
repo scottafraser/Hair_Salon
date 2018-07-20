@@ -25,6 +25,7 @@
     <Folder Include="Models\" />
     <Folder Include="Views\Stylist\" />
     <Folder Include="Views\Client\" />
+    <Folder Include="Views\Specialty\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="Views\Home\StylistList.cshtml" />
@@ -37,6 +38,7 @@
     <Content Remove="Views\Client\AddClient.cshtml" />
     <Content Remove="Views\Client\Success.cshtml" />
     <Content Remove="Views\Stylist\Details.cshtml" />
+    <Content Remove="Views\Specialty\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Stylist\StylistList.cshtml" />
@@ -46,10 +48,12 @@
     <None Include="Views\Client\AddClient.cshtml" />
     <None Include="Views\Client\Success.cshtml" />
     <None Include="Views\Stylist\Details.cshtml" />
+    <None Include="Views\Specialty\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Views\Stylist\Success.cshtml" />
     <Compile Remove="Views\Client\ClientList.cshtml" />
     <Compile Remove="Views\Client\Success.cshtml" />
+    <Compile Remove="Views\Specialty\Index.cshtml" />
   </ItemGroup>
 </Project>
