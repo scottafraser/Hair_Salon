@@ -44,9 +44,30 @@ namespace HairSalon.Models
             conn.Open();
 
             var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"INSERT INTO specialties (stylist_name) VALUES (@Name);";
+            cmd.CommandText = @"INSERT INTO specialties (name) VALUES (@Name);";
 
             cmd.Parameters.AddWithValue("@Name", this.Name);
+
+            cmd.ExecuteNonQuery();
+            Id = (int)cmd.LastInsertedId;
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+
+        }
+
+        public void SaveSpecToStylist(int id)
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"INSERT INTO specialties (name) VALUES (@Name); INSERT INTO stylists_specialties(specialty_id, stylist_is) VALUES(@Id, @stylistId);";
+
+            cmd.Parameters.AddWithValue("@Id", this.Id);
+            cmd.Parameters.AddWithValue("@stylistId", id);
 
             cmd.ExecuteNonQuery();
             Id = (int)cmd.LastInsertedId;
@@ -122,13 +143,13 @@ namespace HairSalon.Models
 
         public List<Stylist> GetStylists()
         {
-            List<Stylist> allStylistSpecs = new List<Stylist> { };
+            List<Stylist> allStylistWithSpec = new List<Stylist> { };
             MySqlConnection conn = DB.Connection();
             conn.Open();
             var cmd = conn.CreateCommand() as MySqlCommand;
             cmd.CommandText = @"SELECT stylists.* FROM specialties
-                JOIN stylists_specialties ON (specialties.id = stylists_specialties.recipe_id)
-                JOIN stylists ON (stylists_specialties.tag_id = stylists.id)
+                JOIN stylists_specialties ON (specialties.id = stylists_specialties.stylist_id)
+                JOIN stylists ON (stylists_specialties.specialty_id = stylists.id)
                 WHERE specialties.id = @specialtyId;";
 
             cmd.Parameters.AddWithValue("@specialtyId", this.Id);
@@ -140,14 +161,14 @@ namespace HairSalon.Models
                 string name = rdr.GetString(1);
 
                 Stylist newStylist = new Stylist(name, id);
-                allStylistSpecs.Add(newStylist);
+                allStylistWithSpec.Add(newStylist);
             }
             conn.Close();
             if (conn != null)
             {
                 conn.Dispose();
             }
-            return allStylistSpecs;
+            return allStylistWithSpec;
         }
 
         public void Delete()

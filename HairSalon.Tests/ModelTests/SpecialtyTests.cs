@@ -80,9 +80,9 @@ namespace HairSalon.Tests
             Specialty testSpecialty = new Specialty("Beard Trimming");
             testSpecialty.Save();
 
-            Stylist firstStylist = new Stylist("Steve", testSpecialty.Id);
+            Stylist firstStylist = new Stylist("Steve");
             firstStylist.Save();
-            Stylist secondStylist = new Stylist("Jerry", testSpecialty.Id);
+            Stylist secondStylist = new Stylist("Jerry");
             secondStylist.Save();
 
 
@@ -94,7 +94,7 @@ namespace HairSalon.Tests
 
         public void Dispose()
         {
-            Client.DeleteAll();
+            Stylist.DeleteAll();
             Specialty.DeleteAll();
         }
     }
