@@ -55,8 +55,8 @@ namespace HairSalon.Tests
             testSpecialty.Save();
             Specialty savedSpecialty = Specialty.GetAll()[0];
 
-            int result = savedSpecialty.GetId();
-            int testId = testSpecialty.GetId();
+            int result = savedSpecialty.Id;
+            int testId = testSpecialty.Id;
 
 
             Assert.AreEqual(testId, result);
@@ -69,27 +69,27 @@ namespace HairSalon.Tests
             Specialty testSpecialty = new Specialty("Beard Trimming");
             testSpecialty.Save();
 
-            Specialty foundSpecialty = Specialty.Find(testSpecialty.GetId());
+            Specialty foundSpecialty = Specialty.Find(testSpecialty.Id);
 
             Assert.AreEqual(testSpecialty, foundSpecialty);
         }
 
         [TestMethod]
-        public void GetClients_RetrievesAllStylistWithSpecialty_StylistList()
+        public void GetStylists_RetrievesAllStylistWithSpecialty_StylistList()
         {
             Specialty testSpecialty = new Specialty("Beard Trimming");
             testSpecialty.Save();
 
-            Client firstStylist = new Stylist("Steve", testSpecialty.GetId());
+            Stylist firstStylist = new Stylist("Steve", testSpecialty.Id);
             firstStylist.Save();
-            Stylist secondStylist = new Stylist("Jerry", testSpecialty.GetId());
-            secondClient.Save();
+            Stylist secondStylist = new Stylist("Jerry", testSpecialty.Id);
+            secondStylist.Save();
 
 
-            List<Client> testStylistList = new List<Stylist> { firstStylist, secondStylist };
+            List<Stylist> testStylistList = new List<Stylist> { firstStylist, secondStylist };
             List<Stylist> resultStylistList = testSpecialty.GetStylists();
 
-            CollectionAssert.AreEqual(testClientList, resultClientList);
+            CollectionAssert.AreEqual(testStylistList, resultStylistList);
         }
 
         public void Dispose()
@@ -98,3 +98,4 @@ namespace HairSalon.Tests
             Specialty.DeleteAll();
         }
     }
+}
