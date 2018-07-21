@@ -1,10 +1,10 @@
 # Hair Salon Mgmt
 
-#### Epicodus C# - Week 3 Independent Project
+#### Epicodus C# - Week 4 Independent Project
 
 #### By Scott Fraser
 
-## Exercise with Databases with C#
+## Exercise with Databases and Many to Many relationships with C#
 This is a program set to mimic a stylist/client management web app for employees of a hair salon.
 
 ## User Stories
@@ -12,6 +12,15 @@ This is a program set to mimic a stylist/client management web app for employees
 1. As an employee, I need to be able to select a stylist, see their details, and see a list of all clients that belong to that stylist.
 1. As an employee, I need to add new stylists to our system when they are hired.
 1. As an employee, I need to be able to add new clients to a specific stylist. I should not 1. be able to add a client if no stylists have been added.
+1. As an employee, I need to be able to delete clients (all and single).
+1. As an employee, I need to be able to view clients (all and single).
+1. As an employee, I need to be able to edit the name of a stylist.
+1. As an employee, I need to be able to edit ALL of the information for a client.
+1. As an employee, I need to be able to add a specialty and view all specialties that have been added.
+1. As an employee, I need to be able to add a specialty to a stylist.
+1. As an employee, I need to be able to click on a specialty and see all of the stylists that have that specialty.
+1. As an employee, I need to see the stylist's specialties on the stylist's details page.
+1. As an employee, I need to be able to add a stylist to a specialty.
 
 
 | Behavior	| INPUT	| OUTPUT |
@@ -22,6 +31,9 @@ This is a program set to mimic a stylist/client management web app for employees
 |The user can delete individual clients| remove "Rob"| Rob is removed from database|
 |The user can delete all clients| click "remove all"| all clients are removed from database|
 |The user can delete individual stylist, and corresponding clients are removed as well| remove "Jessica"| Jessica and Rob are removed from database|
+|The user can edit information for clients and stylists| change "Jessica" to "Bob" | new name "Bob"|
+|The user can create a specialty and associate it with a stylist | "Jessica, Beards" | Jessica's specialty is Beards|
+
 
 ## Setup/Contribution Requirements
 
@@ -30,11 +42,7 @@ This is a program set to mimic a stylist/client management web app for employees
 1. Clone the repo
 1. Open Solutions folder in Visual Studio
 1. Run the program on your local host
-1. Enter a stylists
-1. Enter a client
-1. Enter another client
-1. Remove a client
-1. Terminate a stylists
+
 
 ## Database Setup for New Database
 
