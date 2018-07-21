@@ -10,10 +10,10 @@ namespace HairSalon.Models
         private string _clientName;
         private int _id;
         private int _stylistId;
-        private int _phoneNumber;
+        private string _phoneNumber;
 
 
-        public Client(string clientName, int stylistId, int phoneNumber, int id = 0)
+        public Client(string clientName, int stylistId, string phoneNumber, int id = 0)
         {
             _clientName = clientName;
             _stylistId = stylistId;
@@ -55,7 +55,7 @@ namespace HairSalon.Models
             return _stylistId;
         }
 
-        public int GetPhoneNumber()
+        public string GetPhoneNumber()
         {
             return _phoneNumber;
         }
@@ -95,7 +95,8 @@ namespace HairSalon.Models
                 int clientId = rdr.GetInt32(0);
                 string clientName = rdr.GetString(1);
                 int stylistId = rdr.GetInt32(2);
-                int phoneNumber = rdr.GetInt32(3);
+                string phoneNumber = rdr.GetString(3);
+
                 Client newClient = new Client(clientName, stylistId, phoneNumber, clientId);
                 allClients.Add(newClient);
             }
@@ -125,16 +126,16 @@ namespace HairSalon.Models
             int clientId = 0;
             string clientName = "";
             int stylistId = 0; ;
-            int phoneNumber = 0;
+            string phoneNumber = "";
 
             while (rdr.Read())
             {
                 clientId = rdr.GetInt32(0);
                 clientName = rdr.GetString(1);
                 stylistId = rdr.GetInt32(2);
-                phoneNumber = rdr.GetInt32(3);
+                phoneNumber = rdr.GetString(3);
             }
-            Client newClient = new Client(clientName, stylistId, clientId, phoneNumber);
+            Client newClient = new Client(clientName, stylistId, phoneNumber, clientId);
             conn.Close();
             if (conn != null)
             {
@@ -143,12 +144,12 @@ namespace HairSalon.Models
             return newClient;
         }
 
-        public void Edit(string newName, int newStylistId, int newPhoneNumber)
+        public void Edit(string newName, string newPhoneNumber)
         {
             MySqlConnection conn = DB.Connection();
             conn.Open();
             var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"UPDATE recipes SET this.GetClientName() = @newName, this.SylistId = @newStylistId, this.GetPhoneNumber() = @newPhoneNumber WHERE id = @searchId;";
+            cmd.CommandText = @"UPDATE clients SET client_name = @newName, phone_number = @newPhoneNumber WHERE id = @searchId;";
 
             MySqlParameter searchId = new MySqlParameter();
             searchId.ParameterName = "@searchId";
@@ -156,12 +157,11 @@ namespace HairSalon.Models
             cmd.Parameters.Add(searchId);
 
             cmd.Parameters.AddWithValue("@newName", newName);
-            cmd.Parameters.AddWithValue("@newStylistId", newStylistId);
             cmd.Parameters.AddWithValue("@newPhoneNumber", newPhoneNumber);
 
             cmd.ExecuteNonQuery();
+
             _clientName = newName;
-            _stylistId = newStylistId;
             _phoneNumber = newPhoneNumber;
 
             conn.Close();
@@ -219,7 +219,7 @@ namespace HairSalon.Models
             MySqlConnection conn = DB.Connection();
             conn.Open();
             var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"DELETE FROM clients WHERE Id = @searchId";
+            cmd.CommandText = @"DELETE FROM clients WHERE id = @searchId";
 
             MySqlParameter searchId = new MySqlParameter();
             searchId.ParameterName = "@searchId";

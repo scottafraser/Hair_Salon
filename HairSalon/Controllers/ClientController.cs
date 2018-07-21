@@ -18,7 +18,6 @@ namespace HairSalon.Controllers
             List<Client> allClients = new List<Client>();
             allClients = Client.GetAll();
 
-
             return View(allClients);
         }
 
@@ -33,16 +32,18 @@ namespace HairSalon.Controllers
         }
 
         [HttpPost("/client/new/add")]
-        public ActionResult Create(string client, int id,  int phone)
+        public ActionResult Create(string client, string phone)
         {
             if (String.IsNullOrEmpty(Request.Form["select-stylist"]))
             {
                 return View("Error");
             }
 
-            //int id = int.Parse(Request.Form["select-stylist"]);   
+            int id = int.Parse(Request.Form["select-stylist"]);   
             Stylist thisStylist = Stylist.Find(id);
             int thisId = thisStylist.GetId();
+
+            //int phone = int.Parse(Request.Form["phone"]);
 
             if (String.IsNullOrEmpty(client))
             {
@@ -61,11 +62,28 @@ namespace HairSalon.Controllers
         {
             Client thisClient = Client.Find(id);
 
+            return View(thisClient);
+        }
 
+        [HttpGet("/client/{id}/update-form")]
+        public ActionResult Update(int id)
+        {
+           
+            Client thisClient = Client.Find(id);
 
             return View(thisClient);
         }
 
+        [HttpPost("/client/{id}/update")]
+        public ActionResult Update(string client, string phone, int id)
+        {
+
+            Client thisClient = Client.Find(id);
+
+            thisClient.Edit(client, phone);
+
+            return View("ClientList");
+        }
 
         [HttpGet("/client/deleteall")]
         public ActionResult Delete()
