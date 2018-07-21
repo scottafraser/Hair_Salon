@@ -96,7 +96,7 @@ namespace HairSalon.Models
                 string clientName = rdr.GetString(1);
                 int stylistId = rdr.GetInt32(2);
                 int phoneNumber = rdr.GetInt32(3);
-                Client newClient = new Client(clientName, stylistId, clientId, phoneNumber);
+                Client newClient = new Client(clientName, stylistId, phoneNumber, clientId);
                 allClients.Add(newClient);
             }
             conn.Close();
