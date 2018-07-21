@@ -14,9 +14,7 @@ namespace HairSalon.Controllers
         [HttpGet("/client/list")]
         public ActionResult ClientList()
         {
-
-            List<Client> allClients = new List<Client>();
-            allClients = Client.GetAll();
+            List<Client> allClients = allClients = Client.GetAll();
 
             return View(allClients);
         }
@@ -25,8 +23,7 @@ namespace HairSalon.Controllers
         [HttpGet("/client/new")]
         public ActionResult AddClient()
         {
-            List<Stylist> allStylists = new List<Stylist>();
-            allStylists = Stylist.GetAll();
+            List<Stylist> allStylists = Stylist.GetAll();
 
             return View(allStylists);
         }
@@ -79,16 +76,15 @@ namespace HairSalon.Controllers
         {
 
             Client thisClient = Client.Find(id);
-
             thisClient.Edit(client, phone);
+            List<Client> allClients = Client.GetAll();
 
-            return View("ClientList");
+            return View("ClientList", allClients);
         }
 
         [HttpGet("/client/deleteall")]
         public ActionResult Delete()
         {
-           
             Client.DeleteAll();
 
             return RedirectToAction("ClientList");

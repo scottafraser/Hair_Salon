@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using HairSalon.Models;
+using HairSalon.ViewModels;
 
 namespace HairSalon.Controllers
 {
@@ -35,8 +36,14 @@ namespace HairSalon.Controllers
             Stylist thisStylist = Stylist.Find(id);
             List<Client> clientList = new List<Client>();
             clientList = thisStylist.GetClients();
+            //List<Specialty> thisSpec = thisStylist.GetSpecialties();
 
-            return View("Details", clientList);
+            SalonData newSalonData = new SalonData();
+            newSalonData.FindStylist(id);
+            newSalonData.AllClients = clientList;
+            //newSalonData.AllSpecialties = thisSpec;
+
+            return View("Details", newSalonData);
         }
 
         [HttpGet("/stylist/deleteall")]
