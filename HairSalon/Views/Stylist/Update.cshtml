@@ -1,0 +1,12 @@
+﻿@{
+    ViewData["Title"] = "Stylist Update";
+}
+
+
+<form action="/stylist/@Model.GetId()/update" method="post">
+    <div class='form-group'>
+        <label for='stylist'>New Stylist Name</label>
+        <input id='stylist' name='stylist' class='form-control' type='text'>
+    </div>
+    <button class="btn btn-primary" type="submit"> Change Stylist Name </button>
+    </form>

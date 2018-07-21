@@ -45,6 +45,7 @@
     <Content Remove="Views\Client\Details.cshtml" />
     <Content Remove="Views\Client\Update.cshtml" />
     <Content Remove="Views\Specialty\Update.cshtml" />
+    <Content Remove="Views\Stylist\Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Stylist\StylistList.cshtml" />
@@ -60,6 +61,7 @@
     <None Include="Views\Client\Details.cshtml" />
     <None Include="Views\Client\Update.cshtml" />
     <None Include="Views\Specialty\Update.cshtml" />
+    <None Include="Views\Stylist\Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Views\Stylist\Success.cshtml" />

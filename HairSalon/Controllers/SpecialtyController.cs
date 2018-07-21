@@ -21,14 +21,21 @@ namespace HairSalon.Controllers
                 return View(allSpecialties);
             }
 
-            
-
 
             [HttpGet("/specialty/{id}/delete")]
             public ActionResult Delete(int id)
             {
                 Specialty thisSpecialty = Specialty.Find(id);
                 thisSpecialty.Delete();
+
+                return RedirectToAction("Index");
+            }
+
+        [HttpPost("/specialty/{id}/delete-spec")]
+            public ActionResult DeleteSpec(int id)
+            {
+                Specialty thisSpecialty = Specialty.Find(id);
+                thisSpecialty.DeleteFromStylist();
 
                 return RedirectToAction("Index");
             }

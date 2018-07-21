@@ -40,7 +40,7 @@ namespace HairSalon.Controllers
             Stylist thisStylist = Stylist.Find(id);
             int thisId = thisStylist.GetId();
 
-            //int phone = int.Parse(Request.Form["phone"]);
+   
 
             if (String.IsNullOrEmpty(client))
             {

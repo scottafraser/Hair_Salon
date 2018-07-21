@@ -4,22 +4,40 @@
 <div class="header">
     <h1> @Model.FoundStylist.GetName()</h1>
 </div>
-
+<h5><a href="/stylist/@Model.FoundStylist.GetId()/update-form">Edit Name</a></h5>
+<h3>Clients</h3>
 <div class="card-deck">
 
     @foreach (var client in Model.AllClients)
     {
-    <div class="card bg-light">
-        <div class="card-body text-center">
-            <h5 class="card-title">@client.GetClientName()</h5>
+        <div class="card bg-light">
+            <div class="card-body text-center">
+                <h5 class="card-title">@client.GetClientName()</h5>
 
-            <form action="/stylist/@client.GetId()/delete" method="post">
-                <p class="card-text"><a href="/client/@client.GetId()/details">Get @client.GetClientName()'s details</a></p>
-                <button type="submit" class="btn btn-primary">Remove Client</button>
-                <a href="/stylist/@client.GetId()/delete" class="btn btn-primary">Remove Client</a>
-               </form>
-       </div>
-    </div>
+                <form action="/stylist/@client.GetId()/delete" method="post">
+                    <p class="card-text"><a href="/client/@client.GetId()/details">Get @client.GetClientName()'s details</a></p>
+                    <button type="submit" class="btn btn-primary">Remove Client</button>
+                    <a href="/stylist/@client.GetId()/delete" class="btn btn-primary">Remove Client</a>
+                </form>
+            </div>
+        </div>
+    }
+</div>
+<h3>Specialties</h3>
+<div class="card-deck">
+
+    @foreach (var spec in Model.AllSpecialties)
+    {
+        <div class="card bg-light">
+            <div class="card-body text-center">
+                <h5 class="card-title">@spec.Name</h5>
+
+                <form action="/specialty/@spec.Id/delete-spec" method="post">
+                    <button type="submit" class="btn btn-primary">Delete Specialty From Stylist</button>
+
+                </form>
+            </div>
+        </div>
     }
 
 </div>
